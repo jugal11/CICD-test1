@@ -14,11 +14,11 @@ jobs:
         run: echo "Jugal@1998" | docker login -u "jpraneth07@gmail.com" --password-stdin
       - name: Build, tag, and push image to DockerHub
         env:
-          DOCKERHUB_USERNAME: jugal11
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           IMAGE_NAME: my-image
         run: |
-          docker build -t jugal11/$IMAGE_NAME .
-          docker push jugal11/$IMAGE_NAME:latest
+          docker build -t $DOCKERHUB_USERNAME/$IMAGE_NAME .
+          docker push $DOCKERHUB_USERNAME/$IMAGE_NAME:latest
 
   test:
     runs-on: ubuntu-latest
